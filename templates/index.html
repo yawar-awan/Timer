@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommendation System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-film"></i> Movie Recommendation System</h1>
+            <p>Discover your next favorite movie using AI-powered recommendations</p>
+        </header>
+
+        <div class="main-content">
+            <!-- User Selection -->
+            <div class="user-section">
+                <h2><i class="fas fa-user"></i> Select User</h2>
+                <div class="user-input">
+                    <input type="number" id="userId" placeholder="Enter User ID (1-5)" min="1" max="5">
+                    <button id="loadUserBtn" class="btn btn-primary">
+                        <i class="fas fa-search"></i> Load Profile
+                    </button>
+                </div>
+            </div>
+
+            <!-- User Profile -->
+            <div id="userProfile" class="profile-section" style="display: none;">
+                <h2><i class="fas fa-user-circle"></i> User Profile</h2>
+                <div id="profileContent"></div>
+            </div>
+
+            <!-- Recommendation Methods -->
+            <div class="recommendation-section">
+                <h2><i class="fas fa-magic"></i> Get Recommendations</h2>
+                <div class="method-selection">
+                    <label for="methodSelect">Recommendation Method:</label>
+                    <select id="methodSelect">
+                        <option value="hybrid">Hybrid (Recommended)</option>
+                        <option value="collaborative">Collaborative Filtering</option>
+                        <option value="content">Content-Based</option>
+                    </select>
+                    <button id="getRecommendationsBtn" class="btn btn-success">
+                        <i class="fas fa-star"></i> Get Recommendations
+                    </button>
+                </div>
+            </div>
+
+            <!-- Recommendations Display -->
+            <div id="recommendations" class="recommendations-section" style="display: none;">
+                <h2><i class="fas fa-thumbs-up"></i> Recommended Movies</h2>
+                <div id="recommendationsContent"></div>
+            </div>
+
+            <!-- Movie Catalog -->
+            <div class="catalog-section">
+                <h2><i class="fas fa-list"></i> Movie Catalog</h2>
+                <div class="catalog-controls">
+                    <input type="text" id="searchMovies" placeholder="Search movies...">
+                    <button id="loadMoviesBtn" class="btn btn-secondary">
+                        <i class="fas fa-refresh"></i> Load All Movies
+                    </button>
+                </div>
+                <div id="moviesCatalog"></div>
+            </div>
+
+            <!-- System Statistics -->
+            <div class="stats-section">
+                <h2><i class="fas fa-chart-bar"></i> System Statistics</h2>
+                <div id="systemStats"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rating Modal -->
+    <div id="ratingModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Rate Movie</h3>
+            <div id="modalMovieInfo"></div>
+            <div class="rating-input">
+                <label for="ratingSelect">Your Rating:</label>
+                <select id="ratingSelect">
+                    <option value="1">1 Star</option>
+                    <option value="2">2 Stars</option>
+                    <option value="3">3 Stars</option>
+                    <option value="4">4 Stars</option>
+                    <option value="5">5 Stars</option>
+                </select>
+                <button id="submitRatingBtn" class="btn btn-primary">Submit Rating</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>
